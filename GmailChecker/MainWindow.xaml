@@ -1,0 +1,79 @@
+﻿<Controls:MetroWindow x:Class="GmailChecker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        Background="CornflowerBlue"
+        xmlns:local="clr-namespace:GmailChecker"
+		xmlns:properties="clr-namespace:GmailChecker.Properties"
+		mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow"  Height="400" Width="600" d:DataContext="{d:DesignInstance local:MainWindow}">
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <Button Click="LaunchGmailCheckerOnGitHub"
+                    ToolTip="TimepadEvents on GitHub">
+                <Rectangle Width="22"
+                           Height="22"
+                           Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                                     Visual="{StaticResource appbar_github}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+    <Controls:MetroContentControl>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Column="0" Grid.Row="0" Content="Login:" FontWeight="Black" FontSize="30" Margin="15,0,0,0"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Source={x:Static properties:Settings.Default}, Path=Login}" Margin="15,0,0,0" Foreground="BlueViolet"  FontWeight="Black" FontSize="14" Height="30" Width="200"/>
+
+            <Label Grid.Column="0" Grid.Row="1" Content="From:" FontWeight="Black" FontSize="30" Margin="15,0,0,0"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Source={x:Static properties:Settings.Default}, Path=From}" Margin="15,0,0,0" Foreground="BlueViolet"  FontWeight="Black" FontSize="14" Height="30" Width="200"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Content="Search string:"  FontWeight="Black" FontSize="30" Margin="15,0,0,0"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Source={x:Static properties:Settings.Default}, Path=SearchStr}" Margin="15,0,0,0" Foreground="BlueViolet"  FontWeight="Black" FontSize="14" Height="30" Width="200"/>
+
+            <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" x:Name="ButtonStart" Click="ButtonBase_OnClick" HorizontalAlignment="Center" VerticalAlignment="Center"
+				Width="100" Height="100" Background="{Binding Path=Background}" Foreground="Yellow" BorderThickness="0">
+                <Rectangle Width="80" Height="80" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_delete}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+
+            <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                      RenderOptions.ClearTypeHint="Enabled"
+                      TextOptions.TextFormattingMode="Display"
+                      Margin="0,20,0,0" FontSize="15"
+                      SelectionUnit="FullRow"
+                      ItemsSource="{Binding Path = DataItemsLog}"
+                      AutoGenerateColumns="False"
+					  VerticalScrollBarVisibility="Auto"
+					  HorizontalScrollBarVisibility="Auto"
+                      CanUserAddRows="False"
+                      GridLinesVisibility="All">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="log" Binding="{Binding}" MinWidth="300"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Controls:MetroContentControl>
+</Controls:MetroWindow>
