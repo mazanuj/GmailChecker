@@ -23,6 +23,12 @@ namespace GmailApiLib
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(from) && string.IsNullOrEmpty(search))
+                    {
+                        Informer.RaiseOnResultReceived(@"From and Search parameters are empty");
+                        return;
+                    }
+
                     UserCredential credential;
 
                     using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))

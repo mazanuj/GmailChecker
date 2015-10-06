@@ -13,7 +13,7 @@
     <Controls:MetroWindow.LeftWindowCommands>
         <Controls:WindowCommands>
             <Button Click="LaunchGmailCheckerOnGitHub"
-                    ToolTip="TimepadEvents on GitHub">
+                    ToolTip="GmailChecker on GitHub">
                 <Rectangle Width="22"
                            Height="22"
                            Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
@@ -49,13 +49,7 @@
             <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Source={x:Static properties:Settings.Default}, Path=SearchStr}" Margin="15,0,0,0" Foreground="BlueViolet"  FontWeight="Black" FontSize="14" Height="30" Width="200"/>
 
             <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" x:Name="ButtonStart" Click="ButtonBase_OnClick" HorizontalAlignment="Center" VerticalAlignment="Center"
-				Width="100" Height="100" Background="{Binding Path=Background}" Foreground="Yellow" BorderThickness="0">
-                <Rectangle Width="80" Height="80" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_delete}" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-            </Button>
+				Foreground="Black" BorderThickness="0" Content="Найти и удалить"/>
 
             <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
                 HorizontalAlignment="Stretch"
