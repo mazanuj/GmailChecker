@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
@@ -78,6 +77,7 @@ namespace GmailApiLib
                             Informer.RaiseOnResultReceived(ex);
                         }
                     }
+
                     Informer.RaiseOnResultReceived($"{msgForDel.Count} messages successfully moved to trash");
                 }
                 catch (Exception ex)
